@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: pogokwetter
+  labels:
+    name: pogokwetter
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: user-service
+  namespace: pogokwetter
+  labels:
+    app: user-service
+    tier: backend
+spec:
+  ports:
+    - port: 8082
+      targetPort: 8082
+  selector:
+    app: user-service
+    tier: backend
+  type: ClusterIP
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-service
+  namespace: pogokwetter
+spec:
+  selector:
+    matchLabels:
+      app: user-service
+      tier: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: user-service
+        tier: backend
+    spec:
+      containers:
+        - name: pokemon-service
+          image: docker.io/teunbuis/pogokwetter/user-service:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8082
