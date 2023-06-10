@@ -40,7 +40,7 @@ spec:
         tier: backend
     spec:
       containers:
-        - name: pokemon-service
+        - name: user-service
           image: ghcr.io/teunbuis-semester6-pogokwetter/user-service:latest
           imagePullPolicy: Always
           ports:
@@ -82,7 +82,7 @@ spec:
         tier: backend
     spec:
       containers:
-        - name: mysql
+        - name: user-mysql
           image: mysql:latest
           ports:
             - containerPort: 3308
