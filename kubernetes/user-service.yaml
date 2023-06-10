@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: pokemon-service
-          image: docker.io/teunbuis/pogokwetter/user-service:latest
+          image: ghcr.io/teunbuis-semester6-pogokwetter/user-service:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8082
