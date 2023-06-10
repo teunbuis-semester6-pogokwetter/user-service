@@ -59,9 +59,9 @@ spec:
     app: user-mysql
   ports:
     - protocol: TCP
-      name: "3307"
-      port: 3307
-      targetPort: 3307
+      name: "3308"
+      port: 3308
+      targetPort: 3308
   type: ClusterIP
 ---
 apiVersion: apps/v1
