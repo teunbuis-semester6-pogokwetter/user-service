@@ -1,11 +1,15 @@
 package com.teun.userservice.controllers;
 
+import com.teun.userservice.models.GitHubUser;
 import com.teun.userservice.models.User;
+import com.teun.userservice.service.GitHubService;
 import com.teun.userservice.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +21,21 @@ public class UserController{
     @Autowired
     private UserService service;
 
+    @Autowired
+    GitHubService gitHubService;
+
+
     @GetMapping()
+    public String createUser(Authentication authentication) {
+        User user = new User();
+        UserDetails userDetails =  (UserDetails) authentication.getDetails();
+        user.setUserName(userDetails.getUsername());
+        user.setAppId("GitHub");
+        // Use the retrieved user details to create a user in your system
+        // ...
+        return "User created successfully";
+    }
+    @GetMapping("/all")
     public ResponseEntity<List<User>> getAllUsers(){
         try{
             List<User> users = service.findAll();
