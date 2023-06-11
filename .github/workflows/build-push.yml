@@ -45,7 +45,7 @@ jobs:
         run: docker push ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:latest
 
       - name: Set up Google Cloud SDK
-        uses: google-github-actions/setup-gcloud@v0.4.3
+        uses: google-github-actions/setup-gcloud
         with:
           project_id: handy-resolver-384812
           service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
