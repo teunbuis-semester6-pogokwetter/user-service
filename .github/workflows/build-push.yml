@@ -43,3 +43,18 @@ jobs:
       - name: Push User-service Image
         working-directory: ./
         run: docker push ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:latest
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v0.4.3
+        with:
+          project_id: handy-resolver-384812
+          service_account_key: ${{ secrets.GCLOUD_AUTH_KEY }}
+          export_default_credentials: true
+
+      - name: Build and push Docker image to GCR
+        run: |
+          export PROJECT_ID=handy-resolver-384812 
+          export IMAGE_NAME=gcr.io/$PROJECT_ID/user-service
+          export TAG=${{ github.sha }}
+          docker build -t $IMAGE_NAME:$TAG .
+          docker push $IMAGE_NAME:$TAG
