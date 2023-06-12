@@ -36,10 +36,14 @@ jobs:
           username: ${{github.actor}}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build User-service Image
-        working-directory: ./
-        run: docker build -t ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:latest .
+      - name: Build and tag Docker Image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: |
+            ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:${{ github.sha }}
+            ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:latest
 
-      - name: Push User-service Image
-        working-directory: ./
-        run: docker push ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:latest
+      - name: Publish Docker image
+        run: docker push ${{env.REGISTRY}}/teunbuis-semester6-pogokwetter/user-service:${{ github.sha }}
