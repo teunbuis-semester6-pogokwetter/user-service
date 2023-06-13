@@ -54,7 +54,7 @@ public class AuthController {
     public AuthController (RabbitTemplate rabbitTemplate) {
         this.rabbitTemplate = rabbitTemplate;
     }
-    @PostMapping("/signin")
+    @PostMapping("/signing")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginModel loginRequest) {
         System.out.println("test");
         if(loginRequest.getUsername() != null)

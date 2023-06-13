@@ -1,11 +1,15 @@
 package com.teun.userservice.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class SignUpModel {
     @NotBlank
     @Size(max = 50)

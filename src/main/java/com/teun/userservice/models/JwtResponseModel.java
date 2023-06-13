@@ -1,8 +1,12 @@
 package com.teun.userservice.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 import java.util.UUID;
-
+@NoArgsConstructor
+@AllArgsConstructor
 public class JwtResponseModel {
     private String token;
     private String type = "Bearer";

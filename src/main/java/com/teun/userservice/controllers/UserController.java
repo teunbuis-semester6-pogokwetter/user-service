@@ -1,8 +1,6 @@
 package com.teun.userservice.controllers;
 
-import com.teun.userservice.models.GitHubUser;
 import com.teun.userservice.models.User;
-import com.teun.userservice.service.GitHubService;
 import com.teun.userservice.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,10 +18,6 @@ public class UserController{
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
     @Autowired
     private UserService service;
-
-    @Autowired
-    GitHubService gitHubService;
-
 
     @GetMapping()
     public String createUser(Authentication authentication) {

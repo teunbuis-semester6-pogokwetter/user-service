@@ -4,6 +4,8 @@ package com.teun.userservice.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teun.userservice.dto.AuthDTO;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+@NoArgsConstructor
+@AllArgsConstructor
 public class AuthModel implements UserDetails {
     private UUID userId;
 

@@ -1,7 +1,11 @@
 package com.teun.userservice.models;
 
-import java.util.UUID;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+@NoArgsConstructor
+@AllArgsConstructor
 public class RemovedModel {
     private UUID id;
 

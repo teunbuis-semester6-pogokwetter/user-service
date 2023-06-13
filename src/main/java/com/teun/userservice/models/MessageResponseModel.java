@@ -1,5 +1,10 @@
 package com.teun.userservice.models;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public class MessageResponseModel {
     private String message;
 
