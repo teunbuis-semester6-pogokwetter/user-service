@@ -1,6 +1,7 @@
 package com.teun.userservice.service;
 
 import com.teun.userservice.models.User;
+import com.teun.userservice.rabbitmq.Publisher;
 import com.teun.userservice.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,9 @@ public class UserService {
 
     @Autowired
     private UserRepo repo;
+
+    @Autowired
+    Publisher publisher;
 
     public User findUserByEmail(String email){
         return findUserByEmailInDatabase(email);
@@ -31,6 +35,10 @@ public class UserService {
     }
     private List<User> findAllFromDatabase(){
         return repo.findAll();
+    }
+
+    public void deleteUser(Long userId){
+        publisher.sendForDeletion(userId);
     }
 
 }

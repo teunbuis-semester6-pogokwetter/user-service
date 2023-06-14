@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/user")
-public class UserController{
-    private static final Logger logger = LoggerFactory.getLogger(UserController.class);
+@RequestMapping("/api/users")
+public class UsersController {
+    private static final Logger logger = LoggerFactory.getLogger(UsersController.class);
     @Autowired
     private UserService service;
 
@@ -64,6 +64,16 @@ public class UserController{
             logger.error("ERROR: " + e);
             return ResponseEntity.notFound().build();
         }
-
+    }
+    @PostMapping()
+    public ResponseEntity deleteUser(@RequestBody Long userId){
+        try{
+            service.deleteUser(userId);
+            return ResponseEntity.ok().build();
+        }
+        catch(Exception exception){
+            logger.error("Error: " + exception);
+            return ResponseEntity.badRequest().build();
+        }
     }
 }
